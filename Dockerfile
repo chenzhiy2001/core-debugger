@@ -59,22 +59,16 @@ RUN rustup component add llvm-tools-preview
 
 WORKDIR $HOME
 
-# The most ugly dockerscript ever created
+
 
 # this archive will be automatically unzipped.
 ADD ./riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz /home/workspace
-ADD ./fastgithub_linux-x64.zip /home/workspace
-ADD ./gdbgui /home/workspace
-ADD ./gdbgui.pex /home/workspace
+ADD ./gdb_startup_cmd.txt /home/workspace
 ADD ./Makefile /home/workspace
 
-# ADD ./code-server-4.0.2-linux-amd64.tar.gz /root/
 
 
-RUN unzip fastgithub_linux-x64.zip
 
-# add this number by 1 to let git clone not use cache
-RUN echo 114514
 # use mirror site due to annoying network
 # RUN git clone https://github.com.cnpmjs.org/rcore-os/rCore-Tutorial-v3.git
 RUN git clone https://hub.fastgit.xyz/chenzhiy2001/rCore-Tutorial-v3.git
@@ -88,6 +82,3 @@ RUN chown -R openvscode-server:openvscode-server /home/workspace/
 USER openvscode-server 
 RUN python3 -m pip install --upgrade pip \
     && pip3 install gdbgui -i https://pypi.tuna.tsinghua.edu.cn/simple
-
-
-# CMD code-server& make run_gdbgui
