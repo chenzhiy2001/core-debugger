@@ -47,3 +47,19 @@ make run_gdbgui
 
 详见[gdbgui官网](https://www.gdbgui.com/screenshots/)
 
+## To-do List
+- [ ] 上传镜像到docker hub
+- [ ] 复位功能
+- [ ] 提升稳定性
+    - [ ] 简单rust程序
+    - [ ] rcore-tutorial-v3
+- [ ] 添加堆栈查看功能
+    - [ ] 排查问题。是gdb没生成堆栈信息还是gdbgui没解析？
+- [ ] vscode和gdbgui融合
+- [ ] 高级功能
+    - [ ] 多用户
+    - [ ] 文件存储
+    - [ ] 花哨的图形界面
+- [ ] 支持uCore等其他项目
+    - [ ] 符号表问题
+

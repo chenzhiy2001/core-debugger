@@ -15,11 +15,6 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev libexpat-dev pkg-config  libglib2.0-dev libpixman-1-dev tmux 
 
 
-# This shit don't wotk. use binary permanately.
-# RUN export LC_ALL=C.UTF-8 && export LANG=C.UTF-8 \
-#     && python3 -m pip install --upgrade pip \
-#     && pip3 install gdbgui
-
 #install rust and qemu
 RUN set -x; \
     RUSTUP='/home/workspace/rustup.sh' \
