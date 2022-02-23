@@ -3,12 +3,7 @@
 （暂无文件存储功能，关闭容器前务必保存项目）。
 
 ## 如何使用
-### 拉取镜像
-```dockerfile
-docker pu
-```
 
-也可以自己构建。
 ### 构建docker容器
 
 1. 在[sifive官网](https://www.sifive.com/software)下载risc-v工具链（往下拉找到GNU Embedded Toolchain — v2020.12.8, 下载ubuntu版本），
