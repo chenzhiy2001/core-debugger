@@ -41,13 +41,14 @@ make run_gdbgui
 见[gdbgui官网](https://www.gdbgui.com/screenshots/)
 
 ## To-Do List
-- [ ] 上传镜像到docker hub
-- [ ] 复位功能
+
 - [ ] 提升稳定性
     - [ ] 简单rust程序
     - [ ] rcore-tutorial-v3
 - [ ] 添加堆栈查看功能
     - [ ] 排查问题。是gdb没生成堆栈信息还是gdbgui没解析？
+- [ ] 上传镜像到docker hub
+- [ ] 复位功能
 - [ ] vscode和gdbgui融合
 - [ ] 高级功能
     - [ ] 多用户
