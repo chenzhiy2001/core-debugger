@@ -75,5 +75,6 @@ RUN chown -R openvscode-server:openvscode-server /home/workspace/
 
 # to restore permissions for the web interface
 USER openvscode-server 
+
 # RUN python3 -m pip install --upgrade pip \
 #     && pip3 install gdbgui -i https://pypi.tuna.tsinghua.edu.cn/simple
