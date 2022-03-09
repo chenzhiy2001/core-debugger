@@ -1,5 +1,5 @@
 # CoreDebugger
-这个Docker容器提供了在线vscode、[gdbgui](https://www.gdbgui.com/)、rust工具链以及`qemu-system-riscv64`等[rCore-Tutorial-v3](https://rcore-os.github.io/rCore-Tutorial-Book-v3/index.html)需要的工具
+这个Docker容器提供了在线vscode、一键调试工具、rust工具链以及`qemu-system-riscv64`等[rCore-Tutorial-v3](https://rcore-os.github.io/rCore-Tutorial-Book-v3/index.html)需要的工具
 （暂无文件存储功能，关闭容器前务必保存项目）。
 
 ## 如何使用
@@ -21,7 +21,7 @@ docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it --rm -v $P
 启动后，终端会提示在线vscode的网页地址，一般是`localhost:3000`。
 
 ### 编译、运行、调试
-将`/home/workspace/Makefile`中的`PROJECT_NAME`变量和`gdb_startup_cmd.txt`中的`rCore-Tutorial-v3`修改为欲调试项目的文件夹名。
+将`/home/workspace/Makefile`中的`PROJECT_NAME`变量和`launch.json`中的`rCore-Tutorial-v3`修改为欲调试项目的文件夹名。
 
 （可选）使用[github镜像站](https://doc.fastgit.org/zh-cn/guide.html)：
 ```makefile
@@ -31,29 +31,39 @@ make fast_github
 ```makefile
 make build_run_project
 ```
-调试：
-```makefile
-make run_gdbgui
+调试(目前需手动操作。待插件完善后再添加make debug指令):
+0. `openvscode-server --install-extension webfreak.debug`
+1. 创建launch,json:
+```json
+{
+    "configurations": [
+        {
+            "type": "gdb",
+            "request": "attach",
+            "name": "Attach to qemu",
+            "executable": "/home/workspace/rCore-Tutorial-v3/os/target/riscv64gc-unknown-none-elf/release/os",
+            "target": ":1234",
+            "remote": true,
+            "cwd": "${workspaceRoot}",
+            "valuesFormatting": "parseText",
+            "gdbpath": "/home/workspace/riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14/bin/riscv64-unknown-elf-gdb"
+        },
+    ]
+}
 ```
-运行后，终端会提示在线vscode的网页地址。打开它即可使用gdbgui调试。（弹出窗口会被浏览器屏蔽）
+2. 点击▶按钮
 
-### gdbgui how to
-见[gdbgui官网](https://www.gdbgui.com/screenshots/)
 
 ## To-Do List
 
 - [ ] 提升稳定性
-    - [ ] 简单rust程序
     - [ ] rcore-tutorial-v3
-- [ ] 添加堆栈查看功能
-    - [ ] 排查问题。是gdb没生成堆栈信息还是gdbgui没解析？
-- [ ] 上传镜像到docker hub
 - [ ] 复位功能
-- [ ] vscode和gdbgui融合
 - [ ] 高级功能
     - [ ] 多用户
     - [ ] 文件存储
     - [ ] 花哨的图形界面
+- [ ] 上传镜像到docker hub
 - [ ] 支持uCore等其他项目
     - [ ] 符号表问题
 
