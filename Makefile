@@ -19,8 +19,9 @@ unzip_toolchain:
 #	@tar -xvf $(TOOLCHAIN_NAME).tar.gz
 
 
-build_run_project:
+build:
 	@cd $(PROJECT_NAME)/os && make build
+run:
 	@qemu-system-riscv64 \
 		-machine virt \
 		-nographic \

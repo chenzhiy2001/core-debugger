@@ -29,10 +29,12 @@ make fast_github
 ```
 编译、运行：
 ```makefile
-make build_run_project
+make build
+make run
 ```
 调试(目前需手动操作。待插件完善后再添加make debug指令):
-0. `openvscode-server --install-extension webfreak.debug`
+1. `openvscode-server --install-extension webfreak.debug`
+1. (optional) install rust-analyzer and switch to project's folder
 1. 创建launch,json:
 ```json
 {
@@ -51,7 +53,7 @@ make build_run_project
     ]
 }
 ```
-2. 点击▶按钮
+1. 点击▶按钮
 
 
 ## To-Do List
