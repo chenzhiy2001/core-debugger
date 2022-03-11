@@ -2,6 +2,11 @@
 这个Docker容器提供了在线vscode、一键调试工具、rust工具链以及`qemu-system-riscv64`等[rCore-Tutorial-v3](https://rcore-os.github.io/rCore-Tutorial-Book-v3/index.html)需要的工具
 （暂无文件存储功能，关闭容器前务必保存项目）。
 
+## 概览
+
+
+
+
 ## 如何使用
 
 ### 构建docker容器
@@ -21,23 +26,11 @@ docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it --rm -v $P
 启动后，终端会提示在线vscode的网页地址，一般是`localhost:3000`。
 
 ### 编译、运行、调试
-将`/home/workspace/Makefile`中的`PROJECT_NAME`变量和`launch.json`中的`rCore-Tutorial-v3`修改为欲调试项目的文件夹名。
-
-（可选）使用[github镜像站](https://doc.fastgit.org/zh-cn/guide.html)：
-```makefile
-make fast_github
-```
-编译、运行：
-```makefile
-make build
-make run
-```
-调试(目前需手动操作。待插件完善后再添加make debug指令):
-1. `openvscode-server --install-extension webfreak.debug`
-1. (optional) install rust-analyzer and switch to project's folder
-1. 创建launch,json:
-```json
-{
+1. vscode打开您的项目文件夹
+1. (在vscode中)`cd ..`
+1. 安装Native Debug和rust-analyzer（可选）插件
+1. 创建`launch.json`:
+    ```json
     "configurations": [
         {
             "type": "gdb",
@@ -51,16 +44,27 @@ make run
             "gdbpath": "/home/workspace/riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14/bin/riscv64-unknown-elf-gdb"
         },
     ]
-}
-```
-1. 点击▶按钮
+    ```
+
+1. 将`/home/workspace/Makefile`中的`PROJECT_NAME`变量和`launch.json`中的`rCore-Tutorial-v3`修改为欲调试项目的文件夹名。
+
+1. （可选）使用[github镜像站](https://doc.fastgit.org/zh-cn/guide.html)：
+    ```makefile
+    make fast_github
+    ```
+1. 编译、运行：
+    ```makefile
+    make build
+    make run
+    ```
+1. 点击▶按钮开始调试
 
 
 ## To-Do List
 
 - [ ] 提升稳定性
     - [ ] rcore-tutorial-v3
-- [ ] 复位功能
+
 - [ ] 高级功能
     - [ ] 多用户
     - [ ] 文件存储
