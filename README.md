@@ -4,8 +4,9 @@
 
 ## 概览
 本项目原理如图所示。
+![](./overview.drawio.svg)
 qemu运行os并停留在第一条指令，开启gdbserver，等待远程连接。
-vscode运用基于Native Debug插件修改的插件，启动调试功能。该插件启动gdb，gdb通过tcp协议连接gdbserver
+vscode（通过一个调试插件）启动gdb，令其通过tcp协议连接gdbserver。
 
 
 
