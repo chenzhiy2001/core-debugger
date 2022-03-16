@@ -3,7 +3,9 @@
 （暂无文件存储功能，关闭容器前务必保存项目）。
 
 ## 概览
-
+本项目原理如图所示。
+qemu运行os并停留在第一条指令，开启gdbserver，等待远程连接。
+vscode运用基于Native Debug插件修改的插件，启动调试功能。该插件启动gdb，gdb通过tcp协议连接gdbserver
 
 
 

@@ -1,3 +1,0 @@
-set arch riscv:rv64
-file rCore-Tutorial-v3/os/target/riscv64gc-unknown-none-elf/release/os
-target remote localhost:1234
