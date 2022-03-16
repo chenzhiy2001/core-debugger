@@ -1,15 +1,34 @@
 # CoreDebugger
-这个Docker容器提供了在线vscode、一键调试工具、rust工具链以及`qemu-system-riscv64`等[rCore-Tutorial-v3](https://rcore-os.github.io/rCore-Tutorial-Book-v3/index.html)需要的工具
-（暂无文件存储功能，关闭容器前务必保存项目）。
 
-## 概览
-本项目原理如图所示。
+## 项目描述
+
+本项目将实现一套适合操作系统开发的远程调试工具，主要由两部分组成：
+- docker容器提供在线vscode、rust工具链以及`qemu-system-riscv64`等调试[rCore-Tutorial-v3](https://rcore-os.github.io/rCore-Tutorial-Book-v3/index.html)所需要的工具（已基本完成）
+- 安装于在线vscode上的调试插件（基于Native Debug插件修改）。如下图所示，qemu在运行os时开启gdbserver，等待远程连接；vscode通过调试插件启动gdb，令其通过tcp协议连接gdbserver。
 ![](./overview.drawio.svg)
-qemu运行os并停留在第一条指令，开启gdbserver，等待远程连接。
-vscode（通过一个调试插件）启动gdb，令其通过tcp协议连接gdbserver。
 
 
 
+
+## 预期目标
+
+- [ ] 展现内核数据结构
+- [ ] 将gdb拿到的信息转换成符号
+    - [ ] 支持函数调用的参数
+- [ ] 系统调用跟踪
+- [ ] 中断检测
+- [ ] 进程切换跟踪
+- [ ] 查看堆栈
+- [ ] rust优化
+    - [ ] 宏
+- [ ] 高级功能
+    - [ ] 文件存储
+    - [ ] 花哨的图形界面
+- [ ] 上传镜像到docker hub
+- [ ] 支持uCore等其他项目
+    - [ ] 符号表问题
+- [ ] 支持实体开发板
+- [ ] 文件存储功能
 ## 如何使用
 
 ### 构建docker容器
@@ -63,16 +82,5 @@ docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it --rm -v $P
 1. 点击▶按钮开始调试
 
 
-## To-Do List
 
-- [ ] 提升稳定性
-    - [ ] rcore-tutorial-v3
-
-- [ ] 高级功能
-    - [ ] 多用户
-    - [ ] 文件存储
-    - [ ] 花哨的图形界面
-- [ ] 上传镜像到docker hub
-- [ ] 支持uCore等其他项目
-    - [ ] 符号表问题
 
